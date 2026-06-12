@@ -1,0 +1,18 @@
+@import './styles.tokens.css';
+:root{--bg:#f5f7fb;--card:#ffffff;--muted:#6b7280;--accent:#0ea5a4}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#0f172a;background:var(--bg);padding:24px}
+.dashboard{max-width:1200px;margin:0 auto}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.header h1{margin:0;font-size:1.6rem}
+#pulse-search{margin-left:16px;padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);font-size:var(--font-size-sm)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.project-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(12,18,26,0.08);border:1px solid rgba(15,23,42,0.03);transition:transform .15s ease,box-shadow .15s ease}
+.project-card:focus,.project-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(12,18,26,0.12);outline:none}
+.project-card:focus{box-shadow:0 0 0 var(--focus-ring-width) var(--focus-ring-color),0 12px 30px rgba(12,18,26,0.12);outline:none}
+.project-name{margin:0 0 8px;font-size:1.1rem}
+.project-owner{margin:0 0 8px;color:var(--muted)}
+.project-status .status{font-weight:600;padding:4px 8px;border-radius:8px;background:rgba(14,165,164,0.08);color:var(--accent)}
+.project-activity,.project-priority{margin:6px 0;color:var(--muted)}
+.error{color:#b91c1c}
+@media (max-width:480px){body{padding:12px}.header h1{font-size:1.2rem}}

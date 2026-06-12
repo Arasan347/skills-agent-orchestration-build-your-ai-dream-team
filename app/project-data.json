@@ -1,0 +1,32 @@
+{
+  "projects": [
+    {
+      "name": "Onboarding Revamp",
+      "owner": "Aisha Khan",
+      "status": "At Risk",
+      "recentActivity": "Blocked on API contract signoff",
+      "priority": "High"
+    },
+    {
+      "name": "Mobile Redesign",
+      "owner": "Liam Chen",
+      "status": "On Track",
+      "recentActivity": "UI tests passing, beta release scheduled",
+      "priority": "Medium"
+    },
+    {
+      "name": "Payments Migration",
+      "owner": "Sofia Martinez",
+      "status": "Delayed",
+      "recentActivity": "Data migration 40% complete",
+      "priority": "High"
+    },
+    {
+      "name": "Search Improvements",
+      "owner": "Ethan Patel",
+      "status": "On Track",
+      "recentActivity": "Relevance tuning in progress",
+      "priority": "Low"
+    }
+  ]
+}

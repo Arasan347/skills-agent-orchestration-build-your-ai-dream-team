@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project Pulse</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard" id="dashboard" aria-live="polite">
+    <header class="header">
+      <h1>Project Pulse</h1>
+      <div>
+        <input id="pulse-search" type="search" aria-label="Search projects" placeholder="Search projects..." />
+      </div>
+    </header>
+    <main id="projects" class="projects-grid" role="main" aria-label="Project list"></main>
+  </div>
+
+  <script>
+    function slugify(name){
+      return name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+    }
+
+    fetch('project-data.json')
+      .then(r => r.json())
+      .then(data => {
+        const container = document.getElementById('projects');
+        data.projects.forEach(p => {
+          const slug = slugify(p.name);
+          const titleId = `project-title-${slug}`;
+
+          const card = document.createElement('article');
+          card.className = 'project-card';
+          card.setAttribute('role', 'article');
+          card.setAttribute('aria-labelledby', titleId);
+          card.setAttribute('tabindex', '0');
+
+          card.innerHTML = `\n            <h2 id="${titleId}" class="project-name">${p.name}</h2>\n            <p class="project-owner">Owner: <strong>${p.owner}</strong></p>\n            <p class="project-status">Status: <span class="status">${p.status}</span></p>\n            <p class="project-activity">Recent activity: ${p.recentActivity}</p>\n            <p class="project-priority">Priority: <span class="priority">${p.priority}</span></p>\n          `;
+          container.appendChild(card);
+        });
+
+        // Add focus-ring class for keyboard users so the token-based focus style applies
+        document.addEventListener('focusin', (e) => {
+          const el = e.target;
+          if (el && el.classList && el.classList.contains('project-card')) {
+            el.classList.add('focus-ring');
+          }
+        });
+        document.addEventListener('focusout', (e) => {
+          const el = e.target;
+          if (el && el.classList && el.classList.contains('project-card')) {
+            el.classList.remove('focus-ring');
+          }
+        });
+
+      })
+      .catch(err => {
+        document.getElementById('dashboard').insertAdjacentHTML('beforeend', '<p class="error">Could not load project data.</p>');
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
